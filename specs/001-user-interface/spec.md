@@ -19,7 +19,7 @@ A user opens the application and immediately sees a visual guitar fretboard rend
 
 1. **Given** the application is loaded, **When** the page renders, **Then** a container with a brown wood-like background is displayed against a white page background.
 2. **Given** the fretboard container is visible, **When** a user inspects the layout, **Then** it shows exactly 6 strings (rows) and 12 frets (columns).
-3. **Given** any viewport width (mobile or desktop), **When** the page renders, **Then** the fretboard container adapts to fit the screen without overflowing.
+3. **Given** any viewport width (mobile or desktop), **When** the page renders, **Then** the fretboard container fits within the page without causing page-level horizontal overflow; if the fretboard is wider than the viewport, only the fretboard container scrolls horizontally.
 
 ---
 
