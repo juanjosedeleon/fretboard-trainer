@@ -17,21 +17,25 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [e.g., library/cli/web-service/mobile-app/compiler/desktop-app or NEEDS CLARIFICATION]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**Language/Version**: TypeScript with current React and Next.js versions in the repo  
+**Primary Dependencies**: React, Next.js, Tailwind CSS, Web Audio API, Pitchy  
+**Storage**: N/A - frontend-only application with no database or server persistence  
+**Validation**: Manual browser validation, linting, and type-checking only; automated tests are prohibited by the constitution  
+**Target Platform**: Modern mobile and desktop browsers with microphone access
+**Project Type**: Frontend web application  
+**Performance Goals**: Responsive UI updates during interactive fretboard and tuning flows; low-latency pitch feedback suitable for practice use  
+**Constraints**: Mobile-first responsive design, friendly UX, no backend services, no auth, no external service integrations  
+**Scale/Scope**: Single product surface focused on fretboard training and note-tuning interactions
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Preserves a simple, friendly user experience centered on the primary practice flow.
+- Remains fully responsive across phone, tablet, and desktop breakpoints.
+- Uses frontend-only architecture with no database, auth, user management, or external service calls.
+- Stays within the approved stack: React, Next.js, Tailwind CSS, Web Audio API, and Pitchy.
+- Uses manual validation only and does not introduce automated test code, frameworks, or tasks.
 
 ## Project Structure
 
@@ -41,9 +45,9 @@
 specs/[###-feature]/
 ├── plan.md              # This file (/speckit.plan command output)
 ├── research.md          # Phase 0 output (/speckit.plan command)
-├── data-model.md        # Phase 1 output (/speckit.plan command)
+├── ui-model.md          # Phase 1 output (/speckit.plan command) when feature state or UI structures need documentation
 ├── quickstart.md        # Phase 1 output (/speckit.plan command)
-├── contracts/           # Phase 1 output (/speckit.plan command)
+├── interaction-notes.md # Phase 1 output (/speckit.plan command) for flows, audio behavior, and responsive decisions
 └── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
 ```
 
@@ -56,39 +60,24 @@ specs/[###-feature]/
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
+app/
+├── (routes)/
+├── layout.tsx
+└── page.tsx
 
-tests/
-├── contract/
-├── integration/
-└── unit/
+components/
+├── ui/
+└── fretboard/
 
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
+lib/
+├── audio/
+└── music/
 
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
+public/
+└── [static assets]
 
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+styles/
+└── [global styles if needed beyond Tailwind entrypoints]
 ```
 
 **Structure Decision**: [Document the selected structure and reference the real
@@ -100,5 +89,5 @@ directories captured above]
 
 | Violation | Why Needed | Simpler Alternative Rejected Because |
 |-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+| [e.g., non-standard responsive pattern] | [current need] | [why standard Tailwind layout utilities were insufficient] |
+| [e.g., custom audio-processing abstraction] | [specific problem] | [why direct Web Audio plus Pitchy wiring was insufficient] |
